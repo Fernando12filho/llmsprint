@@ -47,6 +47,8 @@ def make_chunks(token_ids, max_length, stride):
         targets.append(token_ids[i+1: i + max_length + 1])
     return torch.tensor(inputs), torch.tensor(targets)
 
+
+
 inputs, targets = make_chunks(token_ids, 256, 4)
 dataset = TensorDataset(inputs, targets)
 loader = DataLoader(dataset, batch_size = 4, shuffle = True, drop_last = True)
@@ -57,3 +59,4 @@ x, y = next(iter(loader))
 tok_vector = tok_emb(x)
 pos_vector = pos_emb(torch.arange(256))
 
+: 
